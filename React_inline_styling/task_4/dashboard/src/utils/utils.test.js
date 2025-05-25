@@ -8,10 +8,10 @@ describe('Test Utils', () => {
         assert.equal(getFullYear(), new Date().getFullYear());
     });
     it('Validates the result of getFooterCopy with true', () => {
-        assert.equal(getFooterCopy(true), 'Holberton School.');
+        assert.equal(getFooterCopy(true), 'Chidiebere Ekwedike');
     });
     it('Validates the result of getFooterCopy with false', () => {
-        assert.equal(getFooterCopy(false), 'Holberton School main dashboard');
+        assert.equal(getFooterCopy(false), 'Chidiebere Ekwedike - Dashboard');
     });
 
     it('checks return of getLatestNotification', () => {
