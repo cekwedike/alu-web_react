@@ -20,7 +20,7 @@
     "dev": "npm run start-dev -- --env mode=development",
     "prod": "npm run start-dev -- --env mode=production"
   },
-  "author": "Zac W",
+  "author": "Chidiebere Ekwedike",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.16.0",
