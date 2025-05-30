@@ -76,7 +76,7 @@ const screenSize = {
 
 const styles = StyleSheet.create({
   login: {
-    margin: "50px",
+    margin: "20px",
     flexGrow: 1,
     [screenSize.small]: {
       marginTop: "10px",
