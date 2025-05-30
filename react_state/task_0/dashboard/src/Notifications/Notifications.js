@@ -36,13 +36,15 @@ class Notifications extends Component {
 
     return (
       <>
-        <div
-          className={css(styles.menuItem)}
-          id="menuItem"
-          onClick={handleDisplayDrawer}
-        >
-          <p className={menuPStyle}>Your notifications</p>
-        </div>
+        {!displayDrawer && (
+          <div
+            className={css(styles.menuItem)}
+            id="menuItem"
+            onClick={handleDisplayDrawer}
+          >
+            <p className={css(styles.menuItemPShow)}>Your notifications</p>
+          </div>
+        )}
         {displayDrawer && (
           <div className={css(styles.notifications)} id="Notifications">
             <button
