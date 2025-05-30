@@ -13,8 +13,7 @@ class Notifications extends Component {
 
   shouldComponentUpdate(nextProps) {
     return (
-      nextProps.listNotifications.length >
-        this.props.listNotifications.length ||
+      nextProps.listNotifications !== this.props.listNotifications ||
       nextProps.displayDrawer !== this.props.displayDrawer
     );
   }
@@ -32,7 +31,7 @@ class Notifications extends Component {
     } = this.props;
 
     const menuPStyle = css(
-      displayDrawer ? styles.menuItemPNoShow : styles.menuItemPShow
+      displayDrawer ? styles.menuItemPShow : styles.menuItemPNoShow
     );
 
     return (
@@ -172,7 +171,7 @@ const styles = StyleSheet.create({
 
   notifications: {
     float: "right",
-    // border: `3px dashed ${cssVars.mainColor}`,
+    border: `3px dashed ${cssVars.mainColor}`,
     padding: "10px",
     marginBottom: "20px",
     animationName: [borderKeyframes],
@@ -181,7 +180,6 @@ const styles = StyleSheet.create({
     animationFillMode: "forwards",
     ":hover": {
       border: `3px dashed deepSkyBlue`,
-      // animationFillMode: "forwards",
     },
     [screenSize.small]: {
       float: "none",
@@ -191,7 +189,6 @@ const styles = StyleSheet.create({
       fontSize: "20px",
       ":hover": {
         border: "none",
-        // animationFillMode: "forwards",
       },
       position: "absolute",
       background: "white",
