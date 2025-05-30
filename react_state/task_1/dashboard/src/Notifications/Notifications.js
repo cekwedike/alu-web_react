@@ -67,7 +67,10 @@ class Notifications extends Component {
               Here is the list of notifications
             </p>
             <ul className={css(styles.notificationsUL)}>
-              {listNotifications.map((notification) => (
+              {(!listNotifications || listNotifications.length === 0) && (
+                <NotificationItem value="No new notification for now" type="default" />
+              )}
+              {listNotifications && listNotifications.map((notification) => (
                 <NotificationItem
                   key={notification.id}
                   id={notification.id}
