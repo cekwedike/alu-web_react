@@ -23,6 +23,7 @@ BodySectionWithMarginBottom.defaultProps = {
 
 BodySectionWithMarginBottom.propTypes = {
   title: PropTypes.string,
+  children: PropTypes.node,
 };
 
 const screenSize = {

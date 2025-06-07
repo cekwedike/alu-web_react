@@ -1,26 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { StyleSheet, css } from "aphrodite";
 
-const rowStyles = { backgroundColor: "#f5f5f5ab" };
-const headerRowStyles = { backgroundColor: "#deb5b545" };
-
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheckbox = () => {
-    setIsChecked(!isChecked);
-  };
-
   let element;
 
   const tableItemStyle = css(
-    isHeader ? styles.CourseListTh : styles.CourseListTd,
-    isChecked && styles.rowChecked
+    isHeader ? styles.CourseListTh : styles.CourseListTd
   );
 
   if (isHeader === true) {
-    //
     if (textSecondCell === null) {
       element = (
         <th colSpan="2" className={css(styles.CourseListThSpan2)}>
@@ -35,25 +24,27 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
         </>
       );
     }
-    //
-  } else if (isHeader === false) {
+  } else {
     element = (
       <>
         <td className={tableItemStyle}>
-          <input type="checkbox" onClick={handleCheckbox}></input>
-          {textFirstCell}
+          <div className={css(styles.checkboxContainer)}>
+            <input
+              type="checkbox"
+              id={`checkbox-${textFirstCell}`}
+              className={css(styles.checkbox)}
+            />
+            <label htmlFor={`checkbox-${textFirstCell}`} className={css(styles.checkboxLabel)}>
+              {textFirstCell}
+            </label>
+          </div>
         </td>
         <td className={tableItemStyle}>{textSecondCell}</td>
       </>
     );
   }
 
-  let isHeaderStyle;
-
-  if (isHeader) isHeaderStyle = headerRowStyles;
-  else isHeaderStyle = rowStyles;
-
-  return <tr style={isHeaderStyle}>{element}</tr>;
+  return <tr className={css(isHeader ? styles.headerRow : styles.row)}>{element}</tr>;
 }
 
 CourseListRow.defaultProps = {
@@ -87,8 +78,26 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
 
-  rowChecked: {
-    backgroundColor: "#e6e4e4",
+  headerRow: {
+    backgroundColor: "#deb5b545",
+  },
+
+  row: {
+    backgroundColor: "#f5f5f5ab",
+  },
+
+  checkboxContainer: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+  },
+
+  checkbox: {
+    margin: 0,
+  },
+
+  checkboxLabel: {
+    cursor: "pointer",
   },
 });
 

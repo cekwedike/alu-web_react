@@ -7,6 +7,7 @@ import { StyleSheet, css } from "aphrodite";
 function CourseList({ listCourses }) {
   return (
     <table id="CourseList" className={css(styles.list)}>
+      <caption className={css(styles.caption)}>Course List</caption>
       <thead>
         <CourseListRow textFirstCell="Available courses" isHeader={true} />
         <CourseListRow
@@ -54,6 +55,11 @@ const styles = StyleSheet.create({
     borderCollapse: "collapse",
     width: "95%",
     margin: "40px auto 0 auto",
+  },
+  caption: {
+    fontSize: "1.2em",
+    fontWeight: "bold",
+    marginBottom: "10px",
   },
 });
 

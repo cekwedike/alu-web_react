@@ -46,7 +46,7 @@ class App extends Component {
   handleKeyCombination(e) {
     if (e.key === "h" && e.ctrlKey) {
       alert("Logging you out");
-      this.state.logOut();
+      this.logOut();
     }
   }
 
@@ -73,11 +73,10 @@ class App extends Component {
   }
 
   markNotificationAsRead(id) {
-    this.setState({
-      listNotifications: this.state.listNotifications.filter((notification) => {
-        return notification.id !== id;
-      }),
-    });
+    const updatedNotifications = this.state.listNotifications.filter(
+      (notification) => notification.id !== id
+    );
+    this.setState({ listNotifications: updatedNotifications });
   }
 
   componentDidMount() {
@@ -146,10 +145,6 @@ class App extends Component {
     );
   }
 }
-
-App.defaultProps = {};
-
-App.propTypes = {};
 
 const cssVars = {
   mainColor: "#e01d3f",

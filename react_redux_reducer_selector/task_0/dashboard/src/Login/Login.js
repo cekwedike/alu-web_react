@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, css } from "aphrodite";
+import PropTypes from "prop-types";
 
 class Login extends Component {
   constructor(props) {
@@ -71,6 +72,10 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  logIn: PropTypes.func.isRequired,
+};
 
 const screenSize = {
   small: "@media screen and (max-width: 900px)",

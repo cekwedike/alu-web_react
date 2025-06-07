@@ -24,6 +24,7 @@ BodySection.defaultProps = {
 
 BodySection.propTypes = {
   title: PropTypes.string,
+  children: PropTypes.node,
 };
 
 const screenSize = {

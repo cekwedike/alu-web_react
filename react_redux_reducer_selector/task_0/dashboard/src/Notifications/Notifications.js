@@ -8,20 +8,7 @@ import { StyleSheet, css } from "aphrodite";
 class Notifications extends PureComponent {
   constructor(props) {
     super(props);
-    // this.markAsRead = this.markAsRead.bind(this);
   }
-
-  // shouldComponentUpdate(nextProps) {
-  //   return (
-  //     nextProps.listNotifications.length >
-  //       this.props.listNotifications.length ||
-  //     nextProps.displayDrawer !== this.props.displayDrawer
-  //   );
-  // }
-
-  // markAsRead(id) {
-  //   console.log(`Notification ${id} has been marked as read`);
-  // }
 
   render() {
     const {
@@ -48,6 +35,7 @@ class Notifications extends PureComponent {
         {displayDrawer && (
           <div className={css(styles.notifications)} id="Notifications">
             <button
+              type="button"
               style={{
                 background: "transparent",
                 border: "none",
@@ -178,7 +166,6 @@ const styles = StyleSheet.create({
 
   notifications: {
     float: "right",
-    // border: `3px dashed ${cssVars.mainColor}`,
     padding: "10px",
     marginBottom: "20px",
     animationName: [borderKeyframes],
@@ -187,7 +174,6 @@ const styles = StyleSheet.create({
     animationFillMode: "forwards",
     ":hover": {
       border: `3px dashed deepSkyBlue`,
-      // animationFillMode: "forwards",
     },
     [screenSize.small]: {
       float: "none",
@@ -197,7 +183,6 @@ const styles = StyleSheet.create({
       fontSize: "20px",
       ":hover": {
         border: "none",
-        // animationFillMode: "forwards",
       },
       position: "absolute",
       background: "white",
