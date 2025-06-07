@@ -10,6 +10,7 @@ module.exports = {
     filename: "[name].[contenthash].js",
     path: path.resolve("./dist"),
     publicPath: "/",
+    assetModuleFilename: "assets/[hash][ext][query]",
   },
   optimization: {
     moduleIds: "deterministic",
@@ -20,6 +21,12 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           name: "vendors",
           chunks: "all",
+        },
+        styles: {
+          name: "styles",
+          test: /\.css$/,
+          chunks: "all",
+          enforce: true,
         },
       },
     },
@@ -32,6 +39,12 @@ module.exports = {
     compress: true,
     port: 8564,
     historyApiFallback: true,
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
   },
   module: {
     rules: [
@@ -41,17 +54,25 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-            plugins: ["@babel/plugin-transform-runtime"],
+            cacheDirectory: true,
           },
         },
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+            },
+          },
+          "postcss-loader",
+        ],
       },
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.(gif|png|jpe?g|svg|ico)$/i,
         type: "asset",
         parser: {
           dataUrlCondition: {
@@ -107,5 +128,11 @@ module.exports = {
   ],
   resolve: {
     extensions: [".js", ".jsx"],
+    modules: [path.resolve(__dirname, "../src"), "node_modules"],
+  },
+  performance: {
+    hints: process.env.NODE_ENV === "production" ? "warning" : false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
 };
