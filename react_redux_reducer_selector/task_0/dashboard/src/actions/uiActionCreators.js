@@ -7,8 +7,6 @@ import {
   LOGIN_FAILURE,
 } from "./uiActionTypes";
 
-import "node-fetch";
-
 export const login = (email, password) => {
   return {
     type: LOGIN,

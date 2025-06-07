@@ -27,6 +27,13 @@ const uiReducer = (state = initialState, action) => {
         isNotificationDrawerVisible: false,
       };
 
+    case LOGIN:
+      return {
+        ...state,
+        user: action.user,
+        isUserLoggedIn: true,
+      };
+
     case LOGIN_SUCCESS:
       return {
         ...state,
