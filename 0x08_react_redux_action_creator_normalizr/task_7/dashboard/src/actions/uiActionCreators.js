@@ -7,8 +7,6 @@ import {
   LOGIN_FAILURE,
 } from "./uiActionTypes";
 
-import "node-fetch";
-
 export const login = (email, password) => {
   return {
     type: LOGIN,
@@ -16,7 +14,7 @@ export const login = (email, password) => {
   };
 };
 
-export const boundLogin = (email, password) => dispatch(login(email, password));
+export const boundLogin = (email, password) => (dispatch) => dispatch(login(email, password));
 
 export const logout = () => {
   return {
@@ -24,7 +22,7 @@ export const logout = () => {
   };
 };
 
-export const boundLogout = () => dispatch(logout());
+export const boundLogout = () => (dispatch) => dispatch(logout());
 
 export const displayNotificationDrawer = () => {
   return {
@@ -32,8 +30,7 @@ export const displayNotificationDrawer = () => {
   };
 };
 
-export const boundDisplayNotificationDrawer = () =>
-  dispatch(displayNotificationDrawer());
+export const boundDisplayNotificationDrawer = () => (dispatch) => dispatch(displayNotificationDrawer());
 
 export const hideNotificationDrawer = () => {
   return {
@@ -41,8 +38,7 @@ export const hideNotificationDrawer = () => {
   };
 };
 
-export const boundHideNotificationDrawer = () =>
-  dispatch(hideNotificationDrawer());
+export const boundHideNotificationDrawer = () => (dispatch) => dispatch(hideNotificationDrawer());
 
 export const loginSuccess = () => {
   return {

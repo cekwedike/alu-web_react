@@ -23,30 +23,26 @@ class Login extends Component {
   }
 
   handleChangeEmail(event) {
-    const { value } = event.target;
-    const { password } = this.state;
-
-    if (value !== "" && password !== "") this.setState({ enableSubmit: true });
-    else this.setState({ enableSubmit: false });
-
-    this.setState({ email: event.target.value });
+    const email = event.target.value;
+    this.setState({ 
+      email,
+      enableSubmit: email.length > 0 && this.state.password.length > 0
+    });
   }
 
   handleChangePassword(event) {
-    const { value } = event.target;
-    const { email } = this.state;
-
-    if (email !== "" && value !== "") this.setState({ enableSubmit: true });
-    else this.setState({ enableSubmit: false });
-
-    this.setState({ password: event.target.value });
+    const password = event.target.value;
+    this.setState({ 
+      password,
+      enableSubmit: password.length > 0 && this.state.email.length > 0
+    });
   }
 
   render() {
     return (
       <div className={css(styles.login)}>
         <p>Login to access the full dashboard</p>
-        <form action="" onSubmit={this.handleLoginSubmit}>
+        <form onSubmit={this.handleLoginSubmit}>
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -65,7 +61,11 @@ class Login extends Component {
             value={this.state.password}
             onChange={this.handleChangePassword}
           />
-          <input type="submit" disabled={!this.state.enableSubmit} />
+          <input 
+            type="submit" 
+            value="OK"
+            disabled={!this.state.enableSubmit} 
+          />
         </form>
       </div>
     );
